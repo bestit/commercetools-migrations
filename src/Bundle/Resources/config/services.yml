@@ -1,0 +1,28 @@
+services:
+  BestIt\CommerceTools\Migrations\Filesystem:
+    class: BestIt\CommerceTools\Migrations\Filesystem
+    arguments: ['%best_it.commercetools.migrations_bundle.path%', '%best_it.commercetools.migrations_bundle.template%', '%best_it.commercetools.migrations_bundle.namespace%']
+
+  BestIt\CommerceTools\Migrations\Repository:
+    class: BestIt\CommerceTools\Migrations\Repository
+    arguments: ['@best_it.commercetools.migrations_bundle.client', '%best_it.commercetools.migrations_bundle.container%']
+
+  BestIt\CommerceTools\Migrations\Executer:
+    class: BestIt\CommerceTools\Migrations\Executer
+    arguments: ['@best_it.commercetools.migrations_bundle.client']
+
+  BestIt\CommerceTools\Migrations\Migrator:
+    class: BestIt\CommerceTools\Migrations\Migrator
+    arguments: ['@BestIt\CommerceTools\Migrations\Filesystem', '@BestIt\CommerceTools\Migrations\Repository', '@BestIt\CommerceTools\Migrations\Executer']
+
+  BestIt\CommerceTools\MigrationsBundle\Command\CreateCommand:
+    class: BestIt\CommerceTools\MigrationsBundle\Command\CreateCommand
+    arguments: ['@BestIt\CommerceTools\Migrations\Filesystem']
+    tags:
+      - { name: console.command }
+
+  BestIt\CommerceTools\MigrationsBundle\Command\MigrateCommand:
+    class: BestIt\CommerceTools\MigrationsBundle\Command\MigrateCommand
+    arguments: ['@BestIt\CommerceTools\Migrations\Migrator']
+    tags:
+      - { name: console.command }

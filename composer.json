@@ -1,0 +1,37 @@
+{
+  "name": "best-it/commercetools-migrations-bundle",
+  "type": "symfony-bundle",
+  "description": "Brings migrations to CommerceTools.",
+  "keywords": ["commerce tools", "commercetools", "migrations", "symfony", "bundle"],
+  "authors": [
+    {
+      "name": "Michel Chowanski",
+      "email": "michel.chowanski@bestit-online.de"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "symfony/dependency-injection": "^3.4|^4.0",
+    "symfony/yaml": "^3.4|^4.0",
+    "symfony/config": "^3.4|^4.0",
+    "symfony/finder": "^3.4|^4.0",
+    "commercetools/php-sdk": "^1.0 || ^2.0"
+  },
+  "require-dev": {
+    "symfony/phpunit-bridge": ">=2.7",
+    "phpunit/phpunit": "^5.5",
+    "squizlabs/php_codesniffer": "^2.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "BestIt\\CommerceTools\\MigrationsBundle\\": "src/Bundle/",
+      "BestIt\\CommerceTools\\Migrations\\": "src/Component/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BestIt\\Tests\\CommerceTools\\MigrationsBundle\\": "tests/Bundle",
+      "BestIt\\Tests\\CommerceTools\\Migrations\\": "tests/Component"
+    }
+  }
+}
